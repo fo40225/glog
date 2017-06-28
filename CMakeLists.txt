@@ -28,6 +28,7 @@ set (CPACK_PACKAGE_VERSION ${GLOG_VERSION})
 
 option (WITH_GFLAGS "Use gflags" ON)
 option (WITH_THREADS "Enable multithreading support" ON)
+option (BUILD_SHARED_LIBS "Build shared library" ON)
 
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
@@ -335,6 +336,7 @@ configure_file (src/glog/logging.h.in glog/logging.h @ONLY)
 configure_file (src/glog/raw_logging.h.in glog/raw_logging.h @ONLY)
 configure_file (src/glog/stl_logging.h.in glog/stl_logging.h @ONLY)
 configure_file (src/glog/vlog_is_on.h.in glog/vlog_is_on.h @ONLY)
+configure_file (src/glog/log_severity.h glog/log_severity.h COPYONLY)
 
 set (CMAKE_CXX_VISIBILITY_PRESET default)
 set (CMAKE_VISIBILITY_INLINES_HIDDEN 1)
@@ -345,7 +347,7 @@ set (GLOG_PUBLIC_H
   ${CMAKE_CURRENT_BINARY_DIR}/glog/raw_logging.h
   ${CMAKE_CURRENT_BINARY_DIR}/glog/stl_logging.h
   ${CMAKE_CURRENT_BINARY_DIR}/glog/vlog_is_on.h
-  src/glog/log_severity.h
+  ${CMAKE_CURRENT_BINARY_DIR}/glog/log_severity.h
 )
 
 set (GLOG_SRCS
